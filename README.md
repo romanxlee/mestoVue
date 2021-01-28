@@ -1,4 +1,6 @@
 # mesto-vue
+Версия приложения Mesto https://github.com/romanxlee/mesto, переписанная на Vue
+v0.1 рендер карточек, лайк, удаление, открытие одного модального окна
 
 ## Project setup
 ```
@@ -15,10 +17,7 @@ npm run serve
 npm run build
 ```
 
-### Lints and fixes files
-```
-npm run lint
-```
+
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
