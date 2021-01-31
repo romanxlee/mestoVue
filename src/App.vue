@@ -2,14 +2,20 @@
   <div id="root">
     <Header />
     <Profile
-    v-on:open-popup="openPopup"
+    v-on:open-popup="togglePopup"
     
     />
     <PlacesList
+    v-bind:initial="initial"
+    v-on:delete="removeCard"
     />
     <Popup
     v-bind:class="{ 'popup_is-opened': isOpen }"
-    v-on:close-popup="closePopup"
+    v-on:close-popup="togglePopup"
+    v-on:add-card="addCard"
+    />
+    <ImagePopup
+    
     />
   </div>
   
@@ -20,6 +26,7 @@ import Header from '@/components/Header';
 import Profile from '@/components/Profile';
 import PlacesList from '@/components/PlacesList';
 import Popup from '@/components/Popup';
+import ImagePopup from '@/components/ImagePopup';
 
 
 export default {
@@ -28,19 +35,76 @@ export default {
     Header,
     Profile,
     PlacesList, 
-    Popup
+    Popup,
+    ImagePopup
   },
   data() {
     return {
-      isOpen: false
+      isOpen: false,
+      initial: [
+    {
+      id:1,
+      name: 'Архыз',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+      id: 2,
+      name: 'Челябинская область',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+      id: 3,
+      name: 'Иваново',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+      id: 4,
+      name: 'Камчатка',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+      id: 5,
+      name: 'Холмогорский район',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+      id: 6,
+      name: 'Байкал',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    },
+    {
+      id: 7,
+      name: 'Нургуш',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/khrebet-nurgush.jpg'
+    },
+    {
+      id: 8,
+      name: 'Тулиновка',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/tulinovka.jpg'
+    },
+    {
+      id: 9,
+      name: 'Остров Желтухина',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/zheltukhin-island.jpg'
+    },
+    {
+      id: 10,
+      name: 'Владивосток',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/vladivostok.jpg'
+     }
+  ]
     }
   },
   methods: {
-    openPopup() {
-      this.isOpen = true
+    togglePopup() {
+      this.isOpen = !this.isOpen
     },
-    closePopup() {
-      this.isOpen = false
+    addCard(item) {
+      this.initial.push(item)
+      this.togglePopup()
+    },
+    removeCard(id) {
+    this.initial = this.initial.filter(item => item.id !== id)
     }
   }
 }

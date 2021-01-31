@@ -2,11 +2,11 @@
     <div class="popup">
         <div class="popup__content">
             <img 
-            v-on:click="$emit('close-popup')"
+            v-on:click="$emit('close-popup'     )"
             src="../assets/close.svg" alt="" class="popup__close">
             <h3 class="popup__title">Новое место</h3>
             <form 
-            v-on:change=" isActive=true "
+            v-on:input="checkValidity"
             v-on:submit.prevent="onSubmit"
             class="popup__form" name="new" novalidate>
                 <input 
@@ -46,6 +46,13 @@ export default {
                 this.name = ''
                 this.link = ''
             } 
+        },
+        checkValidity() {
+            if (this.name.length == 0 || this.link.length == 0) {
+                this.isActive = false
+            } else {
+                this.isActive = true
+            }
         }
     }
 }

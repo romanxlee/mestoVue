@@ -2,6 +2,7 @@
     <div class="place-card">
         <div 
         v-bind:style="{backgroundImage: 'url(' + item.link + ')'}" 
+        v-on:click="$emit('emit-image', item.link)"
         class="place-card__image">
             <button 
             v-on:click="$emit('remove-card', item.id)"
