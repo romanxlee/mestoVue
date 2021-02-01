@@ -33,7 +33,7 @@ import ImagePopup from '@/components/ImagePopup';
 
 
 export default {
-  name: 'app',
+  name: 'App',
   components: {
     Header,
     Profile,
