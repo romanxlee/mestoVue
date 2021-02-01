@@ -8,6 +8,7 @@
       :item="item"
       :key="item.id"
       v-on:remove-card="emitData"
+      v-on:emit-image="emitImage"
       />
     </div>
 </template>
@@ -27,6 +28,9 @@ export default {
         },
         emitData(id) {
           this.$emit('delete', id)
+        },
+        emitImage(link) {
+          this.$emit('open-image', link)
         }
     }
 }

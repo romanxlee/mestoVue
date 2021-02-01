@@ -8,6 +8,7 @@
     <PlacesList
     v-bind:initial="initial"
     v-on:delete="removeCard"
+    v-on:open-image="openImage"
     />
     <Popup
     v-bind:class="{ 'popup_is-opened': isOpen }"
@@ -15,7 +16,9 @@
     v-on:add-card="addCard"
     />
     <ImagePopup
-    
+    v-bind:link="link"
+    v-bind:class="{ 'img-popup_is-opened': imageOpen }"
+    @close-image="openImage"
     />
   </div>
   
@@ -38,9 +41,27 @@ export default {
     Popup,
     ImagePopup
   },
+    methods: {
+    togglePopup() {
+      this.isOpen = !this.isOpen
+    },
+    addCard(item) {
+      this.initial.push(item)
+      this.togglePopup()
+    },
+    removeCard(id) {
+    this.initial = this.initial.filter(item => item.id !== id)
+    },
+    openImage(src) {
+      this.imageOpen = !this.imageOpen
+      this.link = src
+    }
+  },
   data() {
     return {
       isOpen: false,
+      imageOpen: false,
+      link: '',
       initial: [
     {
       id:1,
@@ -93,18 +114,6 @@ export default {
       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/vladivostok.jpg'
      }
   ]
-    }
-  },
-  methods: {
-    togglePopup() {
-      this.isOpen = !this.isOpen
-    },
-    addCard(item) {
-      this.initial.push(item)
-      this.togglePopup()
-    },
-    removeCard(id) {
-    this.initial = this.initial.filter(item => item.id !== id)
     }
   }
 }

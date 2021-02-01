@@ -2,7 +2,7 @@
     <div class="popup">
         <div class="popup__content">
             <img 
-            v-on:click="$emit('close-popup'     )"
+            v-on:click="$emit('close-popup')"
             src="../assets/close.svg" alt="" class="popup__close">
             <h3 class="popup__title">Новое место</h3>
             <form 

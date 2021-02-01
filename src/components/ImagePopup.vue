@@ -1,15 +1,22 @@
 <template>
     <div class="img-popup">
         <div class="img-popup__content">
-            <img src="../assets/close.svg" alt="" class="img-popup__close">
+            <img 
+            @click="$emit('close-image')"
+            src="../assets/close.svg" alt="" class="img-popup__close">
             <img class="img-popup__place"
-            v-bind:style="{src: link}">
+            v-bind:src="link">
         </div>
     </div>
 </template>
 
 <script>
 export default {
+    props: {
+        link : {
+            type: String
+        }
+    }
 }
 </script>
 
